@@ -1,0 +1,77 @@
+body {
+    background: #f0f0f0;
+    color: #333;
+    text-align: center;
+    font-family: "LINE Seed JP", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.line-seed-jp-thin {
+    font-family: "LINE Seed JP", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.line-seed-jp-regular {
+    font-family: "LINE Seed JP", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.line-seed-jp-bold {
+    font-family: "LINE Seed JP", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.line-seed-jp-extrabold {
+    font-family: "LINE Seed JP", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.strVerRl {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+
+    div {
+        writing-mode: vertical-rl;
+    }
+}
+
+#sndBtn {
+    background-image: linear-gradient(321deg, #ff3fff, #8441ff);
+    border: 0;
+    color: #f0f0f0;
+    margin-bottom: 200px;
+}
+
+.plstGame {
+    margin-bottom: 200px;
+    div {
+        display: block;
+        list-style: none;
+    }
+}
+
+.music-item:nth-child(1) {
+    background-color: #2121a6;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(2) {
+    background-color: #21a62a;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(3) {
+    background-color: #a62121;
+    color: #f0f0f0;
+    border: none;
+}
