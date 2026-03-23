@@ -59,19 +59,61 @@ body {
 }
 
 .music-item:nth-child(1) {
-    background-color: #2121a6;
+    background-color: #584e10;
     color: #f0f0f0;
     border: none;
 }
 
 .music-item:nth-child(2) {
-    background-color: #21a62a;
+    background-color: #102258;
     color: #f0f0f0;
     border: none;
 }
 
 .music-item:nth-child(3) {
-    background-color: #a62121;
+    background-color: #195810;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(4) {
+    background-color: #335810;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(5) {
+    background-color: #581042;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(6) {
+    background-color: #104158;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(7) {
+    background-color: #1d1058;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(8) {
+    background-color: #581e10;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(9) {
+    background-color: #581310;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(10) {
+    background-color: #581010;
     color: #f0f0f0;
     border: none;
 }

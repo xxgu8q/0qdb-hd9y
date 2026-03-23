@@ -1,41 +1,58 @@
-const audio = document.getElementById("myAudio");
-const sndBtn = document.getElementById("sndBtn");
-const statusText = document.getElementById("status"); // 追加
-const buttons = document.querySelectorAll(".music-item"); // getElementByIdから変更
+const buttons = document.querySelectorAll(".music-item");
+const statusText = document.getElementById("status");
 
-let currentSrc = "";
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let currentSource = null;
+let currentBuffer = null;
+let currentUrl = null;
 
-// メインボタン（いらっしゃいませ）の処理
-sndBtn.addEventListener("click", function () {
-  if (audio.paused) {
-    audio.play();
-    sndBtn.textContent = "♪";
-  } else {
-    audio.pause();
-    sndBtn.textContent = "▶";
+async function loadAndPlay(url, name) {
+  //AudioContextを有効化
+  if (audioContext.state === "suspended") {
+    await audioContext.resume();
   }
-});
 
-// プレイリストボタンの処理
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedSrc = button.getAttribute("data-src");
+  //同じ曲なら停止
+  if (currentUrl === url) {
+    stopAudio();
+    statusText.textContent = "【曲名を選択して再生】";
+    currentUrl = null;
+    return;
+  }
 
-    if (currentSrc === selectedSrc) {
-      if (audio.paused) {
-        audio.play();
-        statusText.textContent = button.textContent.trim() + " を再生中";
-      } else {
-        audio.pause();
-        statusText.textContent = "停";
-      }
-    } else {
-      audio.src = selectedSrc;
-      audio.play();
-      currentSrc = selectedSrc;
-      statusText.textContent = button.textContent.trim() + " を再生中";
-      // メインボタンの方も一応リセットしておくと親切
-      sndBtn.textContent = "（いらっしゃいませ）";
-    }
+  stopAudio();
+
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+  const source = audioContext.createBufferSource();
+  source.buffer = audioBuffer;
+  source.loop = true; //ギャップ無しループ
+  source.connect(audioContext.destination);
+  source.start(0);
+
+  currentSource = source;
+  currentBuffer = audioBuffer;
+  currentUrl = url;
+
+  statusText.textContent = "再生中: " + name;
+}
+
+function stopAudio() {
+  if (currentSource) {
+    try {
+      currentSource.stop();
+    } catch (e) {}
+    currentSource.disconnect();
+    currentSource = null;
+  }
+}
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const url = btn.dataset.src;
+    const name = btn.textContent;
+    loadAndPlay(url, name);
   });
 });
