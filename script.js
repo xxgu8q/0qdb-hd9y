@@ -1,12 +1,18 @@
-const buttons = document.querySelectorAll(".music-item");
-const statusText = document.getElementById("status");
+const buttons = document.querySelectorAll(".music-item, .music-item-2");
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let currentSource = null;
 let currentBuffer = null;
 let currentUrl = null;
+let currentStatusText = null; //現在再生中の曲に対応するstatus要素
 
-async function loadAndPlay(url, name) {
+//ボタンが属する.plstGame内の.status要素を取得
+function getStatusTextFor(btn) {
+  const container = btn.closest(".plstGame");
+  return container ? container.querySelector(".status") : null;
+}
+
+async function loadAndPlay(url, name, statusText) {
   //AudioContextを有効化
   if (audioContext.state === "suspended") {
     await audioContext.resume();
@@ -15,8 +21,11 @@ async function loadAndPlay(url, name) {
   //同じ曲なら停止
   if (currentUrl === url) {
     stopAudio();
-    statusText.textContent = "【曲名を選択して再生】";
+    if (currentStatusText) {
+      currentStatusText.textContent = "【曲名を選択して再生】";
+    }
     currentUrl = null;
+    currentStatusText = null;
     return;
   }
 
@@ -35,8 +44,11 @@ async function loadAndPlay(url, name) {
   currentSource = source;
   currentBuffer = audioBuffer;
   currentUrl = url;
+  currentStatusText = statusText;
 
-  statusText.textContent = "再生中: " + name;
+  if (statusText) {
+    statusText.textContent = "再生中: " + name;
+  }
 }
 
 function stopAudio() {
@@ -47,12 +59,17 @@ function stopAudio() {
     currentSource.disconnect();
     currentSource = null;
   }
+  //停止時、直前に再生していたstatus表示をリセット
+  if (currentStatusText) {
+    currentStatusText.textContent = "【曲名を選択して再生】";
+  }
 }
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const url = btn.dataset.src;
     const name = btn.textContent;
-    loadAndPlay(url, name);
+    const statusText = getStatusTextFor(btn);
+    loadAndPlay(url, name, statusText);
   });
 });
