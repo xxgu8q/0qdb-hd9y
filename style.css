@@ -125,13 +125,54 @@ body {
 }
 
 .music-item:nth-child(12) {
-    background-color: #171D30;
+    background-color: #171d30;
     color: #f0f0f0;
     border: none;
 }
 
 .music-item:nth-child(13) {
-    background-color: #5E3C2A;
+    background-color: #5e3c2a;
     color: #f0f0f0;
     border: none;
+}
+
+.music-item-2 {
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item-2:nth-child(1) {
+    background-color: #7433ff;
+}
+
+.music-item-2:nth-child(2) {
+    background-color: #4433ff;
+}
+
+.music-item-2:nth-child(3) {
+    background-color: #335cff;
+}
+
+.music-item-2:nth-child(4) {
+    background-color: #33a0ff;
+}
+
+.music-item-2:nth-child(5) {
+    background-color: #2aadd1;
+}
+
+.music-item-2:nth-child(6) {
+    background-color: #23ad8d;
+}
+
+.music-item-2:nth-child(7) {
+    background-color: #23ad41;
+}
+
+.music-item-2:nth-child(8) {
+    background-color: #33ad23;
+}
+
+.music-item-2:nth-child(9) {
+    background-color: #66ad23;
 }
