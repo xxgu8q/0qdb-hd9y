@@ -117,3 +117,21 @@ body {
     color: #f0f0f0;
     border: none;
 }
+
+.music-item:nth-child(11) {
+    background-color: #967a1d;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(12) {
+    background-color: #171D30;
+    color: #f0f0f0;
+    border: none;
+}
+
+.music-item:nth-child(13) {
+    background-color: #5E3C2A;
+    color: #f0f0f0;
+    border: none;
+}
